@@ -17,14 +17,12 @@ This study introduces an IoMT-enabled framework for advanced hemodynamic paramet
 
 ![IoMT Framework](https://github.com/liuyisi123/LSMOE/blob/main/Figure/Fig.2.jpg)  
 
-## Supplementary Materials  
 
+## Supplementary Videos  
 To further illustrate the proposed framework and its practical implementation, two supplementary videos are provided:  
 
-- **Appendix I.mp4**:  
-  Demonstrates the real-time operation of the proposed IoMT-enabled framework for hemodynamic parameter estimation, including data acquisition, processing, and visualization.  
+### Appendix I: Edge Estimation Process  
+A video demonstrating the edge estimation process can be found in [Appendix I](https://github.com/your-repo/Appendix_I.mp4).  
 
-- **Appendix II.mp4**:  
-  Showcases the deployment and performance evaluation of the framework under diverse clinical and experimental scenarios, highlighting its robustness and scalability.  
-
-These videos provide an in-depth understanding of the system's capabilities and practical applications.  
+### Appendix II: LAN Solution Workflow  
+In addition to the edge computing solution, this study also provides a LAN solution for access by multiple IoT devices. The workflow of this solution is illustrated in [Appendix II](https://github.com/your-repo/Appendix_II.mp4).  
