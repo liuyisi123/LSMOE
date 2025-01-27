@@ -8,12 +8,12 @@ The working mechanism of the personalized hemodynamic parameter estimation frame
 - **(e)** Utilization of E4 wearable devices for advanced physiological data collection.  
 - **(f)** Comparative analysis of the proposed algorithm against state-of-the-art models for blood pressure estimation.  
 
-![Framework Overview](https://github.com/liuyisi123/LSMOE/blob/main/Figure/Figures.1.jpg)  
+![Framework Overview](https://github.com/liuyisi123/LSMOE/blob/main/Figure/Fig.1.jpg)  
 
 This study introduces an IoMT-enabled framework for advanced hemodynamic parameter estimation, featuring:  
 - **(a)** Edge computing on a Linux-based embedded development board for real-time data processing.  
 - **(b)** A multitasking framework leveraging multidimensional compression strategies and PPG signal acquisition for efficient performance.  
 - **(c)** A server platform supporting simultaneous access by multiple IoMT devices, enabling seamless online diagnostic report downloads and feedback to healthcare providers.  
 
-![IoMT Framework](https://github.com/liuyisi123/LSMOE/blob/main/Figure/Figures.2.jpg)  
+![IoMT Framework](https://github.com/liuyisi123/LSMOE/blob/main/Figure/Fig.2.jpg)  
 
