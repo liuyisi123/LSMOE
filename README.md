@@ -17,3 +17,14 @@ This study introduces an IoMT-enabled framework for advanced hemodynamic paramet
 
 ![IoMT Framework](https://github.com/liuyisi123/LSMOE/blob/main/Figure/Fig.2.jpg)  
 
+## Supplementary Materials  
+
+To further illustrate the proposed framework and its practical implementation, two supplementary videos are provided:  
+
+- **Appendix I.mp4**:  
+  Demonstrates the real-time operation of the proposed IoMT-enabled framework for hemodynamic parameter estimation, including data acquisition, processing, and visualization.  
+
+- **Appendix II.mp4**:  
+  Showcases the deployment and performance evaluation of the framework under diverse clinical and experimental scenarios, highlighting its robustness and scalability.  
+
+These videos provide an in-depth understanding of the system's capabilities and practical applications.  
