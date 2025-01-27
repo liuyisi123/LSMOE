@@ -22,7 +22,7 @@ This study introduces an IoMT-enabled framework for advanced hemodynamic paramet
 To further illustrate the proposed framework and its practical implementation, two supplementary videos are provided:  
 
 ### Appendix I: Edge Estimation Process  
-A video demonstrating the edge estimation process can be found in [Appendix I](https://github.com/your-repo/Appendix_I.mp4).  
+A video demonstrating the edge estimation process can be found in [Appendix I](https://github.com/liuyisi123/LSMOE/blob/main/Appendix%20I.mp4).  
 
 ### Appendix II: LAN Solution Workflow  
-In addition to the edge computing solution, this study also provides a LAN solution for access by multiple IoT devices. The workflow of this solution is illustrated in [Appendix II](https://github.com/your-repo/Appendix_II.mp4).  
+In addition to the edge computing solution, this study also provides a LAN solution for access by multiple IoT devices. The workflow of this solution is illustrated in [Appendix II](https://github.com/liuyisi123/LSMOE/blob/main/Appendix%20II.mp4).  
