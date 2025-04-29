@@ -242,4 +242,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgements
 
-We would like to thank all participants who contributed to the data collection process. This research was conducted in accordance with the Declaration of Helsinki, with approval from the Ethics Committee of Xinghua People's Hospital, Jiangsu Province, China (Approval No. JSXHRYLL-NK-202263).
+We would like to thank all participants who contributed to the data collection process. This research was conducted in accordance with the Declaration of Helsinki, with approval from the Ethics Committee of Xinghua People's Hospital, Jiangsu Province, China.
