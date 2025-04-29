@@ -16,7 +16,7 @@ This repository contains the implementation of a **Lightweight Sparse Multi-gate
 - **📊 Comparative Analysis:** Evaluates the proposed algorithm against state-of-the-art models for blood pressure estimation.
 
 ---
-![Framework Overview](https://github.com/liuyisi123/LSMOE/blob/main/Figure/Fig.1.jpg)  
+![Framework Overview](https://github.com/liuyisi123/LSMOE/blob/main/Figure/Fig.1.jpg/)  
 ## 🏗 Framework Overview
 
 This study introduces an **IoMT-enabled framework** for advanced hemodynamic parameter estimation, featuring:
