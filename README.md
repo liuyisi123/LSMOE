@@ -26,7 +26,7 @@ This study introduces an **IoMT-enabled framework** for advanced hemodynamic par
 - **🖥 Server Platform for Simultaneous Access:** Supports multiple IoMT devices, enabling real-time diagnostic reports and feedback to healthcare providers.
 
 ---
-![Framework Overview](https://github.com/liuyisi123/LSMOE/blob/main/Figure/Fig.2.jpg)  
+![Framework Overview](https://github.com/liuyisi123/LSMOE/blob/main/Figure/Fig.2.jpg/)  
 ## 📋 Features
 
 - **Multi-Scale Fusion Architecture:** Integrates data from multiple perspectives using MSFGM.
