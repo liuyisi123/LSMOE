@@ -226,7 +226,7 @@ If you find this code useful for your research, please cite our paper:
 @article{liu2025dualfocus,
   title={A Dual-Focus Cloud-Edge Collaborative Framework in Multi-Task Hemodynamic Parameter Cross-Scale Analysis: The Equilibrium of Clinical Performance and Efficiency},
   author={Liu, Jian and Hu, Shuaicong and Wang, Yanan and Xiang, Wei and Yang, Cuiwei},
-  journal={IEEE Journal of Internet of Things},
+  journal={IEEE Internet of Things Journal},
   year={2025},
   publisher={IEEE}
 }
