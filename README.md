@@ -140,8 +140,7 @@ LSM2oE-Hemodynamic/
 ├── utils/
 │   ├── dataset.py              # Dataset handling
 │   ├── metrics.py              # Evaluation metrics
-│   ├── early_stopping.py       # Early stopping mechanism
-│   └── pruning.py              # Model pruning utilities
+│   ├── early_stopping.py       # Early stopping mechanis
 │
 ├── train.py                    # Training script
 ├── eval.py                     # Evaluation script
