@@ -23,13 +23,20 @@ class SparseDispatcher(object):
         
         # Sort experts by gate values
         sorted_experts, index_sorted_experts = torch.nonzero(gates).sort(0)
-        _, self._expert_index = sorted_experts.split(1, dim=1)
-        self._batch_index = torch.nonzero(gates)[index_sorted_experts[:, 1], 0]
-        self._part_sizes = (gates > 0).sum(0).tolist()
-        
-        # Get nonzero gate values
-        gates_exp = gates[self._batch_index.flatten()]
-        self._nonzero_gates = torch.gather(gates_exp, 1, self._expert_index)
+        if sorted_experts.numel() == 0:
+            # Handle case where no gates are selected
+            self._expert_index = torch.empty(0, 1, dtype=torch.long, device=gates.device)
+            self._batch_index = torch.empty(0, dtype=torch.long, device=gates.device)
+            self._part_sizes = [0] * num_experts
+            self._nonzero_gates = torch.empty(0, 1, device=gates.device)
+        else:
+            _, self._expert_index = sorted_experts.split(1, dim=1)
+            self._batch_index = torch.nonzero(gates)[index_sorted_experts[:, 1], 0]
+            self._part_sizes = (gates > 0).sum(0).tolist()
+            
+            # Get nonzero gate values
+            gates_exp = gates[self._batch_index.flatten()]
+            self._nonzero_gates = torch.gather(gates_exp, 1, self._expert_index)
         
     def dispatch(self, inp):
         """
@@ -41,6 +48,10 @@ class SparseDispatcher(object):
         Returns:
             List of tensors, one per expert
         """
+        if self._batch_index.numel() == 0:
+            # Return empty tensors for all experts
+            return [torch.empty(0, inp.size(1), device=inp.device) for _ in range(self._num_experts)]
+        
         inp_exp = inp[self._batch_index].squeeze(1)
         return torch.split(inp_exp, self._part_sizes, dim=0)
 
@@ -55,14 +66,28 @@ class SparseDispatcher(object):
         Returns:
             Combined output tensor
         """
-        stitched = torch.cat(expert_out, 0)
-        if multiply_by_gates:
+        # Filter out empty expert outputs
+        non_empty_outputs = [out for out in expert_out if out.numel() > 0]
+        
+        if not non_empty_outputs:
+            # If all outputs are empty, return zeros
+            output_size = expert_out[0].size(1) if expert_out else 1
+            return torch.zeros(self._gates.size(0), output_size, 
+                             requires_grad=True, device=self._gates.device)
+        
+        stitched = torch.cat(non_empty_outputs, 0)
+        if multiply_by_gates and self._nonzero_gates.numel() > 0:
             stitched = stitched.mul(self._nonzero_gates)
         
         # Create output tensor of zeros and add expert outputs at appropriate indices
-        zeros = torch.zeros(self._gates.size(0), expert_out[-1].size(1), 
+        zeros = torch.zeros(self._gates.size(0), stitched.size(1), 
                            requires_grad=True, device=stitched.device)
-        combined = zeros.index_add(0, self._batch_index, stitched.float())
+        
+        if self._batch_index.numel() > 0:
+            combined = zeros.index_add(0, self._batch_index, stitched.float())
+        else:
+            combined = zeros
+            
         return combined
     
     def expert_to_gates(self):
@@ -72,6 +97,8 @@ class SparseDispatcher(object):
         Returns:
             List of gate values for each expert
         """
+        if self._nonzero_gates.numel() == 0:
+            return [torch.empty(0, 1, device=self._gates.device) for _ in range(self._num_experts)]
         return torch.split(self._nonzero_gates, self._part_sizes, dim=0)
 
 class MoE(nn.Module):
@@ -311,9 +338,16 @@ class MoE(nn.Module):
         # Add channel dimension for 1D convolution
         expert_inputs = [inp.unsqueeze(1) for inp in expert_inputs]
         
-        # Get expert outputs
-        gates = dispatcher.expert_to_gates()
-        expert_outputs = [self.experts[i](expert_inputs[i]) for i in range(self.num_experts)]
+        # Get expert outputs - handle empty inputs
+        expert_outputs = []
+        for i in range(self.num_experts):
+            if expert_inputs[i].numel() == 0:
+                # Create empty output with correct shape
+                empty_output = torch.zeros(0, self.output_size, 
+                                         device=x.device, requires_grad=True)
+                expert_outputs.append(empty_output)
+            else:
+                expert_outputs.append(self.experts[i](expert_inputs[i]))
         
         # Combine expert outputs
         y = dispatcher.combine(expert_outputs)
