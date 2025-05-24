@@ -90,37 +90,10 @@ python train.py \
   --noise_type uniform \
   --k 3 \
   --use_msfgm \
-  --epochs 200 \
+  --epochs 100 \
   --batch_size 64 \
   --lr 0.001 \
   --output_dir ./output
-```
-
-### Model Compression
-
-```bash
-python lightweight.py \
-  --ppg_file path/to/ppg.npy \
-  --labels_file path/to/cnap.npy \
-  --num_experts 16 \
-  --hidden_channels 128 \
-  --noisy_gating \
-  --noise_type uniform \
-  --k 3 \
-  --use_msfgm \
-  --target_sparsity 0.8 \
-  --teacher_weights output/weights/best_model.pt \
-  --output_dir ./compressed
-```
-
-### Evaluation
-
-```bash
-python eval.py \
-  --ppg_file path/to/ppg.npy \
-  --labels_file path/to/cnap.npy \
-  --model_weights output/weights/best_model.pt \
-  --output_dir ./evaluation
 ```
 
 ---
