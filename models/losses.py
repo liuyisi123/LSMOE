@@ -36,10 +36,18 @@ class URLoss(nn.Module):
         Returns:
             Total loss and individual task losses
         """
+        # Ensure input dimensions match
+        assert outputs.shape == targets.shape, f"Dimension mismatch: outputs {outputs.shape} vs targets {targets.shape}"
+        
         total_loss = 0.0
         task_losses = {}
         
         for i, (task_name, (start_idx, end_idx)) in enumerate(self.task_indices.items()):
+            # Check if indices are within valid range
+            if end_idx > outputs.size(1):
+                print(f"Warning: Task {task_name} index range [{start_idx}:{end_idx}] exceeds output dimension {outputs.size(1)}")
+                continue
+                
             # Extract predictions and targets for the current task
             task_preds = outputs[:, start_idx:end_idx]
             task_targets = targets[:, start_idx:end_idx]
